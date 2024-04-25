@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -26,7 +27,6 @@ public class BookService {
         return ResponseEntity.status(HttpStatus.CREATED).body(Constants.CREATE_SUCCESS);
     }
 
-    @Transactional
     public Book find(Integer id) {
         return Optional.of(bookRepository.findById(id)).get().orElseThrow();
     }
@@ -36,8 +36,13 @@ public class BookService {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(Constants.DELETE_SUCCESS);
     }
 
+    @Transactional
     public void update(Integer id, Book book) {
         book.setId(id);
         bookRepository.save(book);
+    }
+
+    public List<Book> findAll() {
+        return bookRepository.findAll();
     }
 }
