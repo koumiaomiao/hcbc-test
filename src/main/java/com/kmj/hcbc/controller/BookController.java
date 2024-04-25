@@ -20,7 +20,7 @@ public class BookController {
     }
 
     @PostMapping("/book")
-    public ResponseEntity create(@RequestBody Book book)  {
+    public ResponseEntity<String> create(@RequestBody Book book)  {
         return bookService.create(book);
     }
 
@@ -35,7 +35,7 @@ public class BookController {
     }
 
     @DeleteMapping("/books/{id}")
-    public ResponseEntity delete(@PathVariable Integer id)  {
+    public ResponseEntity<String> delete(@PathVariable Integer id)  {
         return bookService.delete(id);
     }
 
