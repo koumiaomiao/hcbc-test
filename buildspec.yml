@@ -12,14 +12,14 @@ phases:
     commands:
       - echo Build started on `date`
       - gradle clean bootJar
-      - docker build -t hcbc .
-      - docker tag hcbc:latest 160071257600.dkr.ecr.ap-southeast-2.amazonaws.com/hcbc:latest
+      - docker build -t awstest.
+      - docker tag awstest:latest 160071257600.dkr.ecr.ap-southeast-2.amazonaws.com/awstest:latest
   post_build:
     commands:
       - echo Build completed on `date`
-      - docker push 160071257600.dkr.ecr.ap-southeast-2.amazonaws.com/hcbc:latest
+      - docker push 160071257600.dkr.ecr.ap-southeast-2.amazonaws.com/awstest:latest
       - echo Writing image definitions file...
-      - printf '{"ImageURI":"160071257600.dkr.ecr.ap-southeast-2.amazonaws.com/hcbc:latest"}' > imageDetail.json
+      - printf '{"ImageURI":"160071257600.dkr.ecr.ap-southeast-2.amazonaws.com/awstest:latest"}' > imageDetail.json
 artifacts:
   files: 
     - imageDetail.json
