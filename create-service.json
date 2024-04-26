@@ -1,0 +1,17 @@
+{
+    "taskDefinition": "awstest:2",
+    "cluster": "AWSCluster",
+    "loadBalancers": [
+        {
+            "targetGroupArn": "arn:aws:elasticloadbalancing:ap-southeast-2:160071257600:targetgroup/target/31fb9af86a11bc74",
+            "containerName": "awstest",
+            "containerPort": 83
+        }
+    ],
+    "desiredCount": 1,
+    "launchType": "EC2",
+    "schedulingStrategy": "REPLICA",
+    "deploymentController": {
+        "type": "CODE_DEPLOY"
+    }
+}

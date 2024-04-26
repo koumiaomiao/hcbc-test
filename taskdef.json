@@ -1,0 +1,24 @@
+{
+    "executionRoleArn": "arn:aws:iam::160071257600:role/ecsTaskExecutionRole",
+    "containerDefinitions": [
+        {
+            "name": "awstest",
+            "image": "160071257600.dkr.ecr.ap-southeast-2.amazonaws.com/awstest:latest",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": 83,
+                    "protocol": "tcp",
+                    "containerPort": 83
+                }
+            ]
+        }
+    ],
+    "requiresCompatibilities": [
+        "EC2"
+    ],
+    "networkMode": "bridge",
+    "cpu": "256",
+    "memory": "512",
+    "family": "awstest"
+}
