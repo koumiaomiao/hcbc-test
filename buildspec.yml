@@ -12,7 +12,7 @@ phases:
     commands:
       - echo Build started on `date`
       - gradle clean bootJar
-      - docker build -t awstest.
+      - docker build -t awstest .
       - docker tag awstest:latest 160071257600.dkr.ecr.ap-southeast-2.amazonaws.com/awstest:latest
   post_build:
     commands:
