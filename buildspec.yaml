@@ -1,0 +1,27 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto11
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 160071257600.dkr.ecr.ap-southeast-2.amazonaws.com
+  build:
+    commands:
+      - echo Build started on `date`
+      - gradle bootJar
+      - docker build -t hcbc .
+      - docker tag hcbc:latest 160071257600.dkr.ecr.ap-southeast-2.amazonaws.com/eureka:latest
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - docker push 160071257600.dkr.ecr.ap-southeast-2.amazonaws.com/hcbc:latest
+      - echo Writing image definitions file...
+      - printf '{"ImageURI":"160071257600.dkr.ecr.ap-southeast-2.amazonaws.com/eureka:latest"}' > imageDetail.json
+artifacts:
+  files: 
+    - imageDetail.json
+    - taskdef.json
+    - appspec.yaml

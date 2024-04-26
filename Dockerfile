@@ -1,5 +1,5 @@
-FROM adoptopenjdk/openjdk11
-
-COPY build/libs/hcbc-0.0.1-SNAPSHOT.jar /app/app.jar
-
-CMD ["java", "-jar", "/app/app.jar"]
+FROM 160071257600.dkr.ecr.ap-southeast-2.amazonaws.com/jdk11:latest
+MAINTAINER jieding
+LABEL app="hcbc" version="0.0.1" by="kmj"
+COPY build/libs/hcbc-0.0.1-SNAPSHOT.jar hcbc.jar
+CMD java -jar hcbc.jar
